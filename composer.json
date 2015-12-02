@@ -1,12 +1,13 @@
 {
-    "name": "javanile/php-liberty-framework",
-    "type": "library",
+    "name": "libertyframework/application",
+    "type": "framework skeleton application",
     "description": "Extreme Small PHP Framework",
     "keywords": ["framework", "php", "web", "application"],
-    "homepage": "http://www.javanile.org",
+    "homepage": "http://www.javanile.org/",
     "license": "MIT",
     "authors": [
-        {"name": "Francesco Bianco", "email": "info.francescobianco@gmail.com"}
+        {"name": "Francesco Bianco", "email": "bianco@javanile.org"},
+        {"name": "Vincenzo La Rosa", "email": "larosa@javanile.org"}
     ],
     "require": {
         "php": ">=5.2"
