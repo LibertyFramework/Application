@@ -1,6 +1,6 @@
 {
     "name": "libertyframework/application",
-    "type": "framework skeleton application",
+    "type": "framework",
     "description": "Extreme Small PHP Framework",
     "keywords": ["framework", "php", "web", "application"],
     "homepage": "http://www.javanile.org/",
