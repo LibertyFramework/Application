@@ -1,0 +1,21 @@
+<div class="navbar-wrapper">
+	<nav 	
+		role="navigation" 
+		class="navbar navbar-default navbar-secondary" 
+		data-spy="affix" 
+		data-offset-top="10" 
+		>
+
+		<div class="navbar-header">    
+			<span class="navbar-brand nav-bar-title">
+				<?=@$this->title?>
+			</span>
+		</div>
+		
+		<div class="navbar-content collapse navbar-collapse">				
+			<div class="pull-right"> 							
+				<?php $this->getHook('nav-index-button') ?>
+			</div>
+		</div>
+	</nav> 
+</div>	

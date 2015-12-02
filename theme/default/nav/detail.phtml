@@ -1,0 +1,35 @@
+<div class="navbar-wrapper">
+
+	<nav 
+		data-spy="affix" 
+		data-offset-top="10" 
+		class="navbar navbar-default navbar-secondary" 
+		role="navigation"
+		> 
+
+		<div class="navbar-header">    
+			<span class="navbar-brand nav-bar-title"><?=@$this->title?></span>				
+		</div> 
+
+		<div class="navbar-content">	
+			<div class="pull-right"> 
+				<button 
+					type="button" 
+					class="navbar-btn btn btn-default" 
+					onclick="javascript:history.go(-1);" >
+					<span class="glyphicon glyphicon-remove"></span>						
+					Indietro
+				</button>
+				<button 
+					type="button" 					
+					class="navbar-btn btn btn-default btn-primary" 
+					onclick="window.location='<?=$this->modifyUrl?>';"
+					>
+					<span class="glyphicon glyphicon-edit"></span>
+					Modifica
+				</button>
+				<?php $this->getHook('nav-detail-button') ?>
+			</div>	
+		</div>   
+	</nav>
+</div>

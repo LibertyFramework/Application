@@ -1,0 +1,36 @@
+<?php
+
+
+
+$this->createUrl = isset($this->createUrl) ? $this->createUrl : __HOME__.'/'.$this->getUrlToken(0).'/create';
+
+
+
+?>
+<div class="navbar-wrapper">
+
+	<nav 	
+		role="navigation" 
+		class="navbar navbar-default navbar-secondary" 
+		data-spy="affix" 
+		data-offset-top="10" 
+		>
+
+		<div class="navbar-header">    
+			<span class="navbar-brand nav-bar-title"><?=@$this->title?></span>
+		</div>
+		
+		<div class="navbar-content collapse navbar-collapse">				
+			<div class="pull-right"> 			
+				<button 
+					type="button" 
+					class="navbar-btn btn btn-default" 
+					onclick="location.href='<?=@$this->createUrl?>'" >
+					<span class="glyphicon glyphicon-plus"></span> 
+					Nuovo
+				</button>
+				<?php $this->getHook('nav-list-button') ?>
+			</div>
+		</div>
+	</nav> 
+</div>	

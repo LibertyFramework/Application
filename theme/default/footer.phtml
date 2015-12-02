@@ -1,0 +1,15 @@
+<footer>
+	<p>
+		&copy; <?=@date('Y')?> <?=$this->_name_?>
+		
+		<?php foreach($this->getMenu('footer-link') as $item) { ?>			
+		 	-
+			<a href="<?=$item->link?>" id="<?=$item->id?>">
+				<?=$item->label?>
+			</a>
+		<?php } ?>			
+	</p>
+</footer>
+</div>
+</body>
+</html>
