@@ -10,6 +10,8 @@
         {"name": "Vincenzo La Rosa", "email": "larosa@javanile.org"}
     ],
     "require": {
-        "php": ">=5.2"
+        "php": ">=5.2",
+        "javanile/schemadb": "@dev",
+        "javanile/liberty": "@dev"
     }
 }
