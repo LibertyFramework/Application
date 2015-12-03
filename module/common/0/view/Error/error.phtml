@@ -1,0 +1,14 @@
+
+<h2>Errore</h2>
+
+<pre>
+    <?=$this->error?>
+</pre>
+
+<?php
+
+$hash = md5(time());
+
+$code = base_convert($hash, 16, 36);
+
+echo $hash.'<br>'.$code;

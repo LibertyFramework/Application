@@ -1,0 +1,19 @@
+<form 
+	id="item"
+	method="POST" 
+	action="<?=$this->saveUrl?>"
+	>
+	
+	<input type="hidden" name="id" value="<?=$this->item->id?>">
+		
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">Tab 1</a></li>			
+		<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>			
+	</ul>
+	
+	<div class="tab-content border-light">		
+		<?php include __DIR__.'/item-form-tab1.phtml' ?>
+		<?php include __DIR__.'/item-form-tab2.phtml' ?>
+	</div>
+	
+</form>

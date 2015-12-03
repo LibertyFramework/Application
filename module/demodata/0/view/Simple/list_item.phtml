@@ -1,0 +1,24 @@
+<?php
+
+##
+$this->addHook('nav-list-button','addHook_nav_list_button');
+
+##
+function addHook_nav_list_button() {
+	?>
+	<li>
+		<button 
+			type="button" 
+			class="navbar-btn btn btn-default" 			
+			>
+			<span class="glyphicon glyphicon-apple"></span> Custom Button
+		</button>
+	</li>	
+	<?php
+}
+
+##
+include __THEME__.'/nav/list.phtml';
+
+##
+echo $this->grid;
