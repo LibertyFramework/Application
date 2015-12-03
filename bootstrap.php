@@ -2,9 +2,9 @@
 
 // by default print-out all errors
 error_reporting(E_ALL);
-ini_set('html_errors', 1);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('html_errors', true);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 if (function_exists('xdebug_disable')) { xdebug_disable(); }
 
 // define base dir
