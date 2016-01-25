@@ -1,16 +1,14 @@
 <?php
+/**
+ * 
+ */
+namespace Module\Userrole\Code;
 
 /**
  * 
  */
-namespace Module\Userrole;
-
-/**
- * 
- */
-use Javanile\Liberty;
-use Module\Userrole\User;
-
+use Javanile\Liberty\Runtime;
+use Module\Userrole\Model\User;
 
 /**
  * 
@@ -23,7 +21,7 @@ class AuthJob
 	function index_action() {		
 		
 		//
-		$app = Liberty\Runtime::getApp();
+		$app = Runtime::getApp();
 		
 		//
 		echo $app->htmlView();

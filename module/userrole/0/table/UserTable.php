@@ -1,15 +1,19 @@
 <?php
+/**
+ * 
+ * 
+ */
 
-//
-require_once __BASE__.'/class/grid/Grid.php';
+namespace Module\Userrole\Table;
 
-//
-require_once __BASE__.'/module/userrole/model/User.php';
+use Javanile\Liberty\Table;
 
-//
-class UserGrid extends Grid {    
-
-	//
+class UserTable extends Table
+{    
+	/**
+     *
+     *
+     */
 	public function __construct() {		
 	
 		//		
@@ -23,7 +27,7 @@ class UserGrid extends Grid {
 			
 			//
 			'id' =>array(
-				'visible'=>false,
+				'visible' => false,
 			),
 			
 			//
@@ -38,7 +42,7 @@ class UserGrid extends Grid {
                    			
 			//
 			'command' => array(
-				'label'	=>'Comandi',
+				'label'	=> 'Comandi',
 				'field' => 'id',
 				'html'	=>
 					'<a href="'.__HOME__.'/user/detail/id/{?}" class="btn btn-xs btn-success"> Visualizza</a> '.
