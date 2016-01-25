@@ -1,16 +1,39 @@
 <?php
-## 
-define('__NAME__','main');
-define('__MODE__','demo');
+/**
+ *
+ *
+ */
 
-##
-require_once __DIR__.'/../../model/Setup.php';
+//
+require_once '../../vendor/autoload.php';
 
-##
-$setup = new Setup(
-	__DIR__.'/../../bootstrap.php',
-	__DIR__.'/index.php'
-);
+//
+use Javanile\Liberty\Setup;
+use Module\Userrole\Model\User;
 
-##
+//
+$setup = new Setup(array(
+
+    //
+    'index' => 'index.php',
+
+    //
+    'bootstrap' => '../../bootstrap.php',
+
+    //
+    'populate' => function () {
+
+        // create admin user if not exists
+        $AdminUser = User::submit(array(
+            'username' => 'admin',
+            'userrole' => 'sa',
+        ));
+
+        // update admin password
+        User::update($AdminUser->id, 'password', md5('admin'));
+    }
+));
+
+//
 $setup->run();
+

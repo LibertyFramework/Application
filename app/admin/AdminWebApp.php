@@ -1,10 +1,14 @@
 <?php
-require_once __BASE__.'/class/app/PrivateWebApp.php';
+/**
+ * 
+ */
 
-##
-class AdminWebApp extends PrivateWebApp {
+namespace App\Admin;
 
-	## . . .
-		
+use Javanile\Liberty\App\PrivateWebApp;
+
+class AdminWebApp extends PrivateWebApp
+{
+	// . . .		
 }
 
