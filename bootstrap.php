@@ -1,80 +1,103 @@
 <?php
+/**
+ *
+ * 
+ */
+
+//
+if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+    die('Required PHP 5.4.0 or higher');
+}
+
+// report all error types
+error_reporting(E_ALL);
 
 // by default print-out all errors
-error_reporting(E_ALL);
 ini_set('html_errors', true);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
-if (function_exists('xdebug_disable')) { xdebug_disable(); }
+
+// disable xdebug
+if (function_exists('xdebug_disable')) { 
+    xdebug_disable();
+}
 
 // define base dir
-if (!defined('__BASE__'))
-{
-	define('__BASE__',__DIR__);
-	define('__BASE_LIB__',__DIR__.'/lib');
-	define('__BASE_CLASS__',__DIR__.'/class');
+if (!defined('__BASE__')) {
+    define('__BASE__', __DIR__);
 }
 
-## required base library
+// require vendor autoload
 require_once __BASE__.'/vendor/autoload.php';
 
-##
-use Javanile\Liberty;
-
-##  
-Liberty\Framework::debug(true);
-
 //
-require_once __BASE__.'/vendor/javanile/redate/src/redate.php'; 
-
-## define base constants
-if (!defined('__NAME__')) {
-	Liberty\Framework::error("[E#102] define constant '__NAME__' in your 'index.php'");
-}
-
-## define base constants
-if (!defined('__MODE__')) {
-	Liberty\Framework::error("[E#103] define constant '__MODE__' in your 'index.php'");
-}
-
-## retrieve config
-$config = Liberty\Framework::config();
-
-## connect database
-use Javanile\SchemaDB;
-
-## connect database
-$db = new SchemaDB\Database(array(
-	'host' => $config['db']['host'],
-	'user' => $config['db']['user'],
-	'pass' => $config['db']['pass'],
-	'name' => $config['db']['name'],
-	'pref' => $config['db']['pref']
-));
-
-//
-$db->setDebug(isset($_GET['debug_sql']));
-
-##
+use Javanile\Liberty\Runtime;
+use Javanile\Liberty\Framework;
+use Javanile\SchemaDB\Database;
 use Javanile\Urlman\Urlman;
 
-## 
-define('__URL__', rtrim($config['url'],'/'));
+// register app autoloader
+spl_autoload_register(function($class) {
 
-## other constants
-define('__HOME__', !Urlman::isUrl($config['home']) ? rtrim(__URL__.'/'.ltrim($config['home'],'/'),'/') : rtrim($config['home'],'/'));
+    //
+    $classFile = Runtime::getAppClassFile($class);
 
-## other constants
+    //
+    if ($classFile && file_exists($classFile)) {
+        include_once $classFile;
+    }
+});
+
+// define base constants
+if (!defined('__NAME__')) {
+	Runtime::error('define constant "__NAME__" in your "index.php"', 102);
+}
+
+// define base constants
+if (!defined('__MODE__')) {
+	Runtime::error('define constant "__MODE__" in your "index.php"', 103);
+}
+
+// retrieve config
+$config = Framework::config();
+
+//
+if (isset($config->db)) {
+    
+    // connect database
+    $db = new Database(array(
+        'type'     => $config->db->type,
+        'host'     => $config->db->host,
+        'dbname'   => $config->db->dbname,
+        'username' => $config->db->username,
+        'password' => $config->db->password,
+        'prefix'   => $config->db->prefix,
+    ));
+
+    // set print out generated and sended sql queries
+    $db->setDebug($config->debug && filter_input(INPUT_GET, 'debug_sql'));
+}
+
+// base url of installed framework
+define('__URL__', rtrim($config->url, '/'));
+
+// other constants
+if (!isset($config->home)) {
+    define('__HOME__', __URL__);
+} else if (Urlman::isUrl($config->home)) {
+    define('__HOME__', rtrim($config->home, '/'));
+} else {
+    define('__HOME__', __URL__.'/'.trim($config->home, '/'));
+}
+
+// other constants
 define('__PUBLIC__', __URL__.'/public');
 
-## other constants
+// other constants
 define('__MODULE__', __BASE__.'/module');
 
-##
-putenv('LC_ALL='.$config['default']['locale']);
+// 
+Framework::debug(isset($config->debug) ? $config->debug : true);
 
-## set locale
-setlocale(LC_ALL,$config['default']['locale']);
-
-##
-Liberty\Framework::debug(isset($config['debug']) ? $config['debug'] : true);
+//
+return $config;
