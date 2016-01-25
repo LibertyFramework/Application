@@ -1,36 +1,33 @@
 <?php 
+/**
+ *
+ *
+ */
 
-##
+//
 return array(
 	
-	##
-	'debug'	=> true,
+	//
+	'name' => 'LibertyCRM',
 	
-	##
-	'name'	=> 'CRM',
+	//
+	'home' => 'app/crm',
 	
-	##
-	'home'	=> '/app/crm',
-	
-	##
+	//
 	'db' => array(		
-		'pref' => 'crm_',
+		'prefix' => 'crm_',
 	),
 	
-	##
+	//
 	'default' => array(
-		'controller' => 'Crm',
-		'theme'		 => 'default',
-		'theme-option' => array(
-			'type' => 'fluid',  
-			'navbar' => 'fixed'  
-		),		
+		'code' => 'Crm',
 	),
 	
-	##
+	//
 	'module' => array(
 		'demodata'
 	),
-	
-);
 
+	//
+	'debug'	=> true,
+);

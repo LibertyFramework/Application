@@ -1,35 +1,28 @@
 <?php 
+/**
+ *
+ *
+ */
 
-##
+//
 return array(
-	
-	##
-	'debug'	=> true,
-	
-	##
-	'name'	=> 'My Application',
 		
-	##
-	'home'	=> __URL__.'/',
+	//
+	'name' => 'Demo',
+		
+	//
+	'home' => 'app/main',
 	
-	##
+	//
 	'db' => array(
-		'pref' => 'main_',
+		'prefix' => 'demo_',
 	),
-	
-	##
-	'default' => array(
-		'locale'		=> 'en_US',
-		'controller'	=> 'Main',
-		'theme'			=> 'default',
-		'theme-option'	=> array(
-			'type' => 'fluid'  
-		),
-	),
-	
-	##
+		
+	//
 	'module' => array(
-		'demodata'
-	),	
-);
+		'demodata' => 1
+	),
 
+    //
+	'debug'	=> true,
+);

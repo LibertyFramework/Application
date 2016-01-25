@@ -1,35 +1,38 @@
 <?php 
 
-##
+//
 return array(
 	
-	##
-	'debug'	=> true,
-	
-	##
-	'name'	=> 'My Apps',
-		
-	##
-	'home'	=> '/',
-	
-	##
-	'db' => array(
-		'pref' => 'main_',
-	),
-	
-	##
-	'default' => array(
-		'locale'		=> 'it_IT',
-		'controller'	=> 'Main',
-		'theme'			=> 'default',
-		'theme-option'	=> array(
-			'type' => 'fluid'  
-		),
-	),
-	
-	##
-	'module' => array(
-		'demodata' => 0,
-	),	
-);
+	//
+	'name' => 'LibertyFramework',
 
+    //
+    'version' => 'beta4',
+
+	//
+	'url' => '/',
+	
+	//
+	'db' => array(
+		'prefix' => 'main_',
+	),
+
+	//
+	'default' => array(		
+		'code' => 'Main',
+	),
+    
+    //
+    'theme'	=> array(
+        'name' => 'default',
+        'type' => 'fluid',
+    ),
+	
+	//
+	'module' => array(
+		'demodata',
+	),
+
+    //
+    'debug' => true,
+);

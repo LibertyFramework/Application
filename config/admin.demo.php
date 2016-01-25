@@ -1,29 +1,29 @@
 <?php 
 
-##
+//
 return array(
 	
-	##
+	//
 	'debug'	=> true,
 	
-	##
-	'name'	=> 'Admin Application',
+	//
+	'name'	=> 'Admin!',
 	
-	##
-	'home'	=> '/app/admin/', 
+	//
+	'home'	=> 'app/admin', 
 	
-	##
+	//
 	'default' => array(
-		'job'	=> 'Admin',
+		'job' => 'Admin',
 	),
 
-	##
+	//
 	'theme' => array(
 		'name' => 'default',		
 		'type' => 'fluid',  	
 	),
 	
-	##
+	//
 	'module' => array(
 		'demodata'
 	),	

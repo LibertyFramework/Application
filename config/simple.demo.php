@@ -1,36 +1,28 @@
 <?php 
+/**
+ *
+ * 
+ */
 
-##
+//
 return array(
 	
-	##
-	'debug'	=> true,
+	//
+	'debug' => true,
 	
-	##
-	'name'	=> 'CRM',
+	//
+	'name' => 'CRM',
 	
-	##
-	'home'	=> '/app/crm',
+	//
+	'url' => '/app/crm',
 	
-	##
+	//
 	'db' => array(		
-		'pref' => 'crm_',
+		'prefix' => 'crm_',
 	),
 	
-	##
-	'default' => array(
-		'controller' => 'Crm',
-		'theme'		 => 'default',
-		'theme-option' => array(
-			'type' => 'fluid',  
-			'navbar' => 'fixed'  
-		),		
-	),
-	
-	##
+	//
 	'module' => array(
 		'demodata'
 	),
-	
 );
-
