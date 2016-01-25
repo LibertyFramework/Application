@@ -17,8 +17,19 @@
 
 	<div class="navbar-header">			
 		<a id="top-logo" class="navbar-brand" href="<?=__HOME__?>">
-			<img src="<?=__LOGO__?>" alt="<?=$this->_name_?>" height="35" style=""/>				
-			<?=$this->_name_?>
+			<img
+                src="<?=__LOGO__?>"
+                alt="<?=$this->name?>"
+                height="35"
+                style=""
+                />
+			<?php 
+                echo $this->name;
+                
+                if (isset($this->config->version)) {
+                    echo '<sup><small>('.$this->config->version.')</small></sup>';
+                }
+            ?>
 		</a>
 	</div>
 

@@ -1,24 +1,24 @@
 <?php 
 
-##
-$navbar_class		= $this->themeOption('navbar','fixed') != 'fixed' ? '' : 'navbar-fixed-top"';
-$container_class	= $this->themeOption('type','fluid') != 'fluid' ? 'container' : 'container-fluid';
+//
+$navbar_class = $this->themeOption('navbar','fixed') != 'fixed' ? '' : 'navbar-fixed-top"';
 
-##
+//
+$container_class = $this->themeOption('type','fluid') != 'fluid' ? 'container' : 'container-fluid';
+
+//
 include __THEME__.'/header.phtml'; 
 
-##
+//
 include __THEME__."/navbar.phtml"; 
 
 ?>
 
-<div class="starter-template">
-	<div>
-		<?=$this->_view_?>
-	</div>
+<div class="theme-view">
+    <?=$this->view?>
 </div>	
 
 <?php 
 
-##
+//
 include __THEME__.'/footer.phtml';

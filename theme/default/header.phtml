@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?=$this->_name_?></title>
+<title><?=$this->getTitle()?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="<?=__THEME_URL__?>/css/bootstrap.dataTables.css">
 <link rel="stylesheet" href="<?=__THEME_URL__?>/css/bootstrap.fix.css">
 <link rel="stylesheet" href="<?=__URL__?>/public/css/jquery.uploadify.min.css">
-<?=$this->render_hook('append-css')?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/1.0.0/css/flag-icon.css">
+<?=$this->hook('theme-css-append')?>
 <script>var __URL__="<?=__URL__?>";var __HOME__="<?=__HOME__?>";</script>
 <script src="<?=__URL__?>/public/js/jquery.min.js"></script>
 <script src="<?=__URL__?>/public/js/jquery-ui.min.js"></script>
@@ -28,7 +30,7 @@
 <script>$ws.base = "<?=__HOME__?>";</script>
 <script src="<?=__URL__?>/public/js/dialog.js"></script>
 <script src="<?=__URL__?>/public/js/common.js"></script>
-<?=$this->render_hook('append-js')?>
+<?=$this->hook('theme-js-append')?>
 </head> 
 <body>
 <div class="<?=$container_class?>">

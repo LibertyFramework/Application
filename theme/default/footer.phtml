@@ -1,7 +1,13 @@
 <footer>
-	<p>
-		&copy; <?=@date('Y')?> <?=$this->_name_?>
-		
+	<p>		
+        <?php
+            echo '&copy; '.@date('Y').' '.$this->name;
+            
+            if (isset($this->config->version)) {
+                echo '<sup><small>('.$this->config->version.')</small></sup>';
+            }
+        ?>
+
 		<?php foreach($this->getMenu('footer-link') as $item) { ?>			
 		 	-
 			<a href="<?=$item->link?>" id="<?=$item->id?>">

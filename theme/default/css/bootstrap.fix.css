@@ -1,4 +1,4 @@
-.starter-template {
+.theme-view {
 	padding-top: 60px;
 }
 
@@ -162,7 +162,7 @@ table.table-compact th:first-child {
 }
 
 .navbar .navbar-brand {
-	padding: 2px 15px 2px 0;
+	padding: 2px 20px 2px 0;
 }
 
 .navbar.navbar-secondary .navbar-brand, 
@@ -301,6 +301,10 @@ body {
   padding-bottom: 10px;
 }
 
+.navbar-default .navbar-nav>li>a:hover {
+	background: #D3D6FF;
+}
+
 .navbar-btn {
   margin-top: 3px;
   margin-bottom: 3px;
@@ -308,6 +312,10 @@ body {
 
 .navbar-default .navbar-brand {
 	color: #444;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #444;
 }
 
 .navbar-default .navbar-nav>li>a {
