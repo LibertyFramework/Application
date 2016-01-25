@@ -1,0 +1,11 @@
+<h1><?=_('Hello World!')?></h1>
+<p>Wellcome, this is a sample application to demostrate my features</p>
+
+
+<?php if ($this->isAction('index')) { ?>
+
+	<?=idate::convert('16/10/1981', 'it', 'mysql')?>
+	<br/>
+	<?=idate::convert('1981-10-16', 'mysql', 'it')?>
+
+<?php } ?>
