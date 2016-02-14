@@ -13,6 +13,10 @@
         "php": ">=5.4",
         "javanile/schemadb": "@dev",
         "javanile/liberty": "@dev",
-        "javanile/urlman": "@dev"
+        "javanile/urlman": "@dev",
+        "javanile/lightpdf": "@dev"       
+    },
+	"suggest": {
+        "libertyframework/application": "OK! Run setup.php from your browser"
     }
 }

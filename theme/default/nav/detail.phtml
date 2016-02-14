@@ -1,3 +1,20 @@
+<?php
+/**
+ *
+ *
+ */
+
+//
+$title = isset($this->title) ? $this->title : t('Detail');
+
+//
+$modifyUrl = isset($this->modifyUrl) ? $this->modifyUrl : __HOME__;
+
+//
+$closeUrl = isset($this->closeUrl) ? $this->closeUrl : __HOME__;
+
+?>
+
 <div class="navbar-wrapper">
 
 	<nav 
@@ -8,27 +25,27 @@
 		> 
 
 		<div class="navbar-header">    
-			<span class="navbar-brand nav-bar-title"><?=@$this->title?></span>				
+			<span class="navbar-brand nav-bar-title">
+                <?=$title?>
+            </span>
 		</div> 
 
 		<div class="navbar-content">	
 			<div class="pull-right"> 
-				<button 
-					type="button" 
-					class="navbar-btn btn btn-default" 
-					onclick="javascript:history.go(-1);" >
-					<span class="glyphicon glyphicon-remove"></span>						
-					Indietro
-				</button>
-				<button 
-					type="button" 					
-					class="navbar-btn btn btn-default btn-primary" 
-					onclick="window.location='<?=$this->modifyUrl?>';"
+				<?=$this->getHook('theme-nav-detail-buttons')?>
+				<a
+					href="<?=$modifyUrl?>"
+					class="navbar-btn btn btn-default btn-primary"
 					>
 					<span class="glyphicon glyphicon-edit"></span>
-					Modifica
-				</button>
-				<?php $this->getHook('nav-detail-button') ?>
+					<?=t('Edit')?>
+				</a>
+                <a
+					href="<?=$closeUrl?>"
+					class="navbar-btn btn btn-default"
+					>
+					<?=t('Close')?>
+				</a>
 			</div>	
 		</div>   
 	</nav>

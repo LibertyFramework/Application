@@ -1,7 +1,7 @@
 <?php 
 
 //
-return array(
+return [
 	
 	//
 	'name' => 'LibertyFramework',
@@ -13,26 +13,26 @@ return array(
 	'url' => '/',
 	
 	//
-	'db' => array(
+	'db' => [
 		'prefix' => 'main_',
-	),
+	],
 
 	//
-	'default' => array(		
+	'default' => [
 		'code' => 'Main',
-	),
+	],
     
     //
-    'theme'	=> array(
+    'theme'	=> [
         'name' => 'default',
         'type' => 'fluid',
-    ),
+    ],
 	
 	//
-	'module' => array(
+	'module' => [
 		'demodata',
-	),
+	],
 
     //
     'debug' => true,
-);
+];

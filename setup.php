@@ -5,6 +5,10 @@
  */
 
 //
+define('__NAME__', 'main');
+define('__MODE__', 'main');
+
+//
 require_once 'vendor/autoload.php';
 
 //

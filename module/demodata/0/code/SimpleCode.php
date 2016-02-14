@@ -1,95 +1,279 @@
 <?php
+/**
+ *
+ *
+ */
 
-//
-require_once __MODULE__.'/grid/MainItemGrid.php';
+namespace Module\Demodata\Code;
 
-//
-class MainController {
-	
-	//
-	public function index_action() {
-	
+use Javanile\Liberty\Runtime;
+use Module\Demodata\Model\SimpleItem;
+use Module\Demodata\Table\SimpleItemTable;
+use Module\Demodata\Model\SimpleElement;
+use Module\Demodata\Table\SimpleElementTable;
+
+class SimpleCode
+{
+    /**
+     *
+     *
+     */
+	public function indexAction()
+    {
 		//
-		$app = App::getInstance();
+		$app = Runtime::getApp();
+		
+		//
+		echo $app->html();
+	}
+	
+	/**
+     *
+     * 
+     */
+	public function createItemAction()
+    {
+		//
+		$app = Runtime::getApp();
+
+        //
+        $item = new SimpleItem();
+
+        // before to send to user interface
+        // decote data in human readable form
+        $item->decode();
+
+		//
+		echo $app->html([
+			'title'   => 'Create new item',
+            'saveUrl' => $app->url('simple/save-item?debug_sql=1'),
+            'Item'    => $item,
+		]);
+	}
+	
+	/**
+     *
+     *
+     */
+	public function modifyItemAction()
+    {	
+		//
+		$app = Runtime::getApp();
 		
 		//
 		$app->html();		
 	}
 	
-	//
-	public function item_create_action() {
-	
+	/**
+     *
+     * 
+     */
+	public function detailItemAction()
+    {
 		//
-		$app = App::getInstance();
+		$app = Runtime::getApp();
 		
+        //
+        $id = $app->getUrlParam('id');
+
+        //
+        $item = SimpleItem::load($id);
+
 		//
-		$app->html(array(
-			'title' => 'Create New Item',
-		));		
+		echo $app->html([
+            'Item' => $item,
+        ]);
 	}
 	
-	//
-	public function item_modify_action() {
-	
+	/**
+     *
+     * 
+     */
+	public function saveItemAction()
+    {
 		//
-		$app = App::getInstance();
-		
-		//
-		$app->html();		
+		$app = Runtime::getApp();
+
+        // human readable input from ui
+        $values = filter_input_array(INPUT_POST);
+
+        // create object model
+        $item = new SimpleItem($values);
+
+        // assert for validate fields
+        // if ($item->assert()) {
+        // }
+
+        // before store object
+        // encode human readable
+        // data from $_POST
+        $item->encode();
+
+        // now store
+        $item->store();
+
+        //
+        $app->redirect('simple/detail-item/id/'.$item->id);
 	}
 	
-	//
-	public function item_detail_action() {
-	
+	/**
+     *
+     *
+     */
+	public function listItemAction()
+    {
 		//
-		$app = App::getInstance();
+		$app = Runtime::getApp();
 		
 		//
-		$app->html();		
+		$table = new SimpleItemTable();
+		
+		//
+		echo $app->html([
+            'table' => $table->html(),
+        ]);
 	}
 	
-	//
-	public function item_save_action() {
-	
+	/**
+     *
+     *
+     */
+	public function ajaxTableItemAction()
+    {
 		//
-		$app = App::getInstance();
+		$table = new SimpleItemTable();
 		
 		//
-		$app->html();		
+		echo $table->json();
 	}
-	
-	//
-	public function item_list_action() {
-	
+
+    /**
+     *
+     *
+     */
+	public function deleteItemAction()
+    {
 		//
-		$app = App::getInstance();
-		
+		$table = new ItemTable();
+
 		//
-		$grid = new MainItemGrid();
-		
-		//
-		$app->html(array(
-			'grid' => $grid->html(),
-		));		
+		echo $table->json();
 	}
-	
-	//
-	public function item_grid_action() {
-	
+
+    /**
+     *
+     *
+     */
+	public function createElementAction()
+    {
 		//
-		$grid = new MainItemGrid();
-		
+		$app = Runtime::getApp();
+
 		//
-		echo json_encode($grid->ajax());		
+		echo $app->html(array(
+			'title'     => 'Create new element',
+            'Element'   => new SimpleElement(),
+ 		));
 	}
-	
-	//
-	public function license_action() {
-		
+
+	/**
+     *
+     *
+     */
+	public function modifyElementAction()
+    {
 		//
-		$app = App::getInstance(); 
-		
+		$app = Runtime::getApp();
+
 		//
-		$app->html();		
+		$app->html();
+	}
+
+	/**
+     *
+     *
+     */
+	public function detailElementAction()
+    {
+		//
+		$app = Runtime::getApp();
+
+		//
+		$app->html();
+	}
+
+	/**
+     * 
+     *
+     */
+	public function saveElementAction()
+    {
+		//
+		$app = Runtime::getApp();
+
+        // human readable input from ui
+        $values = filter_input_array(INPUT_POST);
+
+        // create object model
+        $item = new SimpleItem($values);
+
+        // assert for validate fields
+        // if ($item->assert()) {
+        // }
+
+        // before store object
+        // encode human readable
+        // data from $_POST
+        $item->encode();
+
+        // now store
+        $item->store();
+
+        //
+        $app->redirect('simple/detail-element/id/'.$item->id);
+	}
+
+	/**
+     *
+     *
+     */
+	public function listElementAction()
+    {
+		//
+		$app = Runtime::getApp();
+
+		//
+		$table = new SimpleElementTable();
+
+		//
+		echo $app->html(array(
+			'table' => $table->html(),
+		));
+	}
+
+	/**
+     *
+     *
+     */
+	public function ajaxTableElementAction()
+    {
+		//
+		$table = new SimpleElementTable();
+
+		//
+		echo $table->ajax();
+	}
+
+    /**
+     *
+     *
+     */
+	public function deleteElementAction()
+    {
+		//
+		$table = new ItemTable();
+
+		//
+		echo $table->ajax();
 	}
 }

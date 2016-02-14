@@ -6,13 +6,19 @@
 
 //
 require_once '../../vendor/autoload.php';
-
+ 
 //
 use Javanile\Liberty\Setup;
 use Module\Userrole\Model\User;
 
 //
-$setup = new Setup(array(
+$setup = new Setup([
+
+    //
+    'name' => 'admin',
+
+    //
+    'mode' => 'demo',
 
     //
     'index' => 'index.php',
@@ -24,15 +30,19 @@ $setup = new Setup(array(
     'populate' => function () {
 
         // create admin user if not exists
-        $AdminUser = User::submit(array(
+        $AdminUser = User::submit([
             'username' => 'admin',
+            'password' => md5('admin'),
             'userrole' => 'sa',
-        ));
+        ]);
 
         // update admin password
-        User::update($AdminUser->id, 'password', md5('admin'));
+        //User::update($AdminUser->id, 'password', md5('admin'));
+
+        //
+        return true;
     }
-));
+]);
 
 //
 $setup->run();

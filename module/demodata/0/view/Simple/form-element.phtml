@@ -1,0 +1,26 @@
+<?php
+/**
+ *
+ *
+ */
+
+//
+$saveUrl = isset($this->saveUrl) ? $this->saveUrl : '';
+
+?>
+
+<form
+	id="item"
+	method="POST"
+	action="<?=$saveUrl?>"
+	>
+
+	<input type="hidden" name="id" value="<?=$this->Item->id?>">
+
+    <?php
+        $this->drawFormPanels([
+            __DIR__.'/form-element-panel1.phtml' => t('Panel1'),
+            __DIR__.'/form-element-panel2.phtml' => t('Panel2'),
+        ]);
+    ?>
+</form>

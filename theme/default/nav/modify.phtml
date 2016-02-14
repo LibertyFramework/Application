@@ -1,40 +1,55 @@
+<?php
+/**
+ *
+ *
+ */
+
+//
+$title = isset($this->title) ? $this->title : t('Create');
+
+//
+$cancelUrl = isset($this->cancelUrl) ? $this->cancelUrl : __HOME__;
+
+?>
+
 <div class="navbar-wrapper">
 
-	<nav 
-		data-spy="affix" 
-		data-offset-top="10" 
-		class="navbar navbar-default navbar-secondary" 
+	<nav
+		data-spy="affix"
+		data-offset-top="10"
+		class="navbar navbar-default navbar-secondary"
 		role="navigation"
-		> 
+		>
 
-		<div class="navbar-header" >    
-			<span class="navbar-brand nav-bar-title" ><?=@$this->title?></span>
-		</div> 
+		<div class="navbar-header">
+			<span class="navbar-brand nav-bar-title" >
+                <?=$title?>
+            </span>
+		</div>
 
-		<div class="navbar-content collapse navbar-collapse">		
+		<div class="navbar-content collapse navbar-collapse">
 			<div class="pull-right">
-				<button 
-					type="button" 
-					data-toggle="tooltip" 
-					data-original-title="Torna alla scermata precedente" 
-					class="navbar-btn btn btn-default" 
-					onclick="javascript:history.go(-1);" 
+
+                <?=$this->getHook('theme-nav-modify-buttons')?>
+
+                <button
+					class="navbar-btn btn btn-default btn-success"
+					type="button"
+					onclick="javascript:submitForm();"
 					>
-					<span class="glyphicon glyphicon-remove"></span>
-					Indietro
+					<span class="glyphicon glyphicon-ok-sign"></span>
+					<?=t('Save')?>
 				</button>
-				<button 
-					class="navbar-btn btn btn-default btn-primary" 
-					type="button" 
-					onclick="javascript:submitForm();" 
-					data-toggle="tooltip" 
-					data-original-title="Salva il dato corrente"
-					>
-					<span class="glyphicon glyphicon-floppy-disk"></span>
-					Salva
+
+                <button
+					type="button"
+					class="navbar-btn btn btn-default"
+					data-ui-confirm="<?=t('Vuoi uscire senza salvare?')?>|<?=$cancelUrl?>"
+                    >
+					<?=t('Cancel')?>
 				</button>
-				<?php $this->getHook('nav-modify-button') ?>
+
 			</div>
-		</div>   
+		</div>
 	</nav>
 </div>	

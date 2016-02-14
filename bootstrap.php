@@ -31,22 +31,19 @@ if (!defined('__BASE__')) {
 require_once __BASE__.'/vendor/autoload.php';
 
 //
+use Javanile\Liberty\Text;
 use Javanile\Liberty\Runtime;
 use Javanile\Liberty\Framework;
 use Javanile\SchemaDB\Database;
 use Javanile\Urlman\Urlman;
 
-// register app autoloader
-spl_autoload_register(function($class) {
-
+// universal string and text translator function
+function t($text, $domain=null) {
+    
     //
-    $classFile = Runtime::getAppClassFile($class);
+    return Text::getText($text, $domain);
+}
 
-    //
-    if ($classFile && file_exists($classFile)) {
-        include_once $classFile;
-    }
-});
 
 // define base constants
 if (!defined('__NAME__')) {
@@ -78,6 +75,30 @@ if (isset($config->db)) {
     $db->setDebug($config->debug && filter_input(INPUT_GET, 'debug_sql'));
 }
 
+// register app class autoloader
+spl_autoload_register(function($class) {
+
+    //
+    $classFile = Framework::getAppClassFile($class);
+
+    //
+    if ($classFile && file_exists($classFile)) {
+        include_once $classFile;
+    }
+});
+
+// register module class autoloader
+spl_autoload_register(function($class) {
+
+    //
+    $classFile = Framework::getModClassFile($class);
+
+    //
+    if ($classFile && file_exists($classFile)) {
+        include_once $classFile;
+    }
+});
+
 // base url of installed framework
 define('__URL__', rtrim($config->url, '/'));
 
@@ -89,6 +110,9 @@ if (!isset($config->home)) {
 } else {
     define('__HOME__', __URL__.'/'.trim($config->home, '/'));
 }
+
+// hash session code 
+define('__HASH__', __FILE__.'|'.__NAME__.'|'.__MODE__);
 
 // other constants
 define('__PUBLIC__', __URL__.'/public');

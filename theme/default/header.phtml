@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<?=__URL__?>/public/css/jquery.uploadify.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/1.0.0/css/flag-icon.css">
-<?=$this->hook('theme-css-append')?>
+<?=$this->getHook('theme-css-append')?>
 <script>var __URL__="<?=__URL__?>";var __HOME__="<?=__HOME__?>";</script>
 <script src="<?=__URL__?>/public/js/jquery.min.js"></script>
 <script src="<?=__URL__?>/public/js/jquery-ui.min.js"></script>
@@ -22,15 +22,15 @@
 <script src="<?=__THEME_URL__?>/js/bootstrap.dataTables.js"></script>
 <script src="<?=__URL__?>/public/js/hook.js"></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js?ver=4.1'></script>
-<script src="http://cdn.common-js.eu/api/js/0.2.0/common-ui.js?compile"></script>
+<script src="<?=__URL__?>/public/js/common-ui.js"></script>
 <script src="<?=__URL__?>/public/js/common-ui-uploadify.js"></script>
-<script>$ui.uploadifySwf = '<?=__URL__?>/public/swf/uploadify.swf';</script>
 <script src="<?=__URL__?>/public/js/common-ws.js"></script>
 <script>$ui.setLocale('it');</script>
 <script>$ws.base = "<?=__HOME__?>";</script>
+<script>$ui.uploadifySwf = '<?=__URL__?>/public/swf/uploadify.swf';</script>
 <script src="<?=__URL__?>/public/js/dialog.js"></script>
 <script src="<?=__URL__?>/public/js/common.js"></script>
-<?=$this->hook('theme-js-append')?>
+<?=$this->getHook('theme-js-append')?>
 </head> 
 <body>
 <div class="<?=$container_class?>">

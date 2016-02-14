@@ -2,6 +2,13 @@
 	padding-top: 60px;
 }
 
+.theme-view h1,
+.theme-view h2,
+.theme-view h3
+{
+	margin-top: 0;
+}
+
 .tab-content {
 	padding-top: 10px;
 	padding-bottom: 3px;	
@@ -9,6 +16,11 @@
 
 .border-light {
 	border: 1px solid #ddd;	
+}
+
+.border-rounded {
+	border-radius: 5px 5px 5px 5px;	
+	padding-top: 10px;
 }
 
 .tab-content.border-light {
@@ -70,6 +82,10 @@
 
 .h60px {
 	height:60px;
+}
+
+.mb5px {
+	margin-bottom: 5px;
 }
 
 form.border-light {
@@ -227,7 +243,8 @@ form .col-xs-6,
 form .col-xs-7, 
 form .col-xs-8,
 form .col-xs-9 {
-	padding-left: 0;
+	padding-left: 5px;
+	border-left: 4px solid #e2e2e2;
 }
 
 .navbar-form .form-group {
@@ -239,6 +256,14 @@ form .col-xs-9 {
 	margin: 0;
 	border-right: 1px solid #e2e2e2;
 	border-left: 1px solid #f2f2f2;
+}
+
+form .table {
+	margin-bottom: 0;
+}
+
+form .table th {
+	font-weight: normal !important;
 }
 
 .navbar-wrapper {
@@ -349,4 +374,64 @@ body {
 
 *:hover>.show-on-hover {
 	display: initial;
+}
+
+.pull-right .dropdown-menu {
+	left: auto !important;
+	right: 0 !important;
+}
+
+.ui-state-default {
+	background-image: -webkit-linear-gradient(top,#f8f9f9 0,#e3e4e4 100%);
+    background-image: -o-linear-gradient(top,#f8f9f9 0,#e3e4e4 100%);
+    /* background-image: -webkit-gradient(linear,left top,left bottom,from(#f8f9f9),to(#e3e4e4)); */
+    /* background-image: linear-gradient(to bottom,#f8f9f9 0,#e3e4e4 100%); */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff8f9f9', endColorstr='#ffe3e4e4', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+}
+
+th.ui-state-default,
+.table-bordered>thead>tr>th {
+	border-bottom: 1px solid #aaaaaa;	
+	font-weight: bold;
+}
+
+.navbar-form {
+	margin-top: 3px;
+	margin-bottom: 2px;
+}
+
+.divider-button-vertical {
+    height: 40px;
+    border-right: 1px solid #e2e2e2;
+    border-left: 1px solid #f2f2f2;
+    display: inline-block;
+    width: 0px;
+    vertical-align: middle;
+	margin-left: -1px;
+}
+
+.dataTables_length select {
+	border: none;
+	width: auto !important;
+	cursor:pointer;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	outline: none;
+	padding:0;
+	margin:0;
+	font-size: 14px;
+}
+
+.dataTables_length select.form-control:focus {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+.form-control {
+	padding-left: 2px;
+	padding-right: 2px;	
 }

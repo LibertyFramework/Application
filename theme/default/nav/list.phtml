@@ -1,11 +1,16 @@
 <?php
+/**
+ *
+ *
+ */
 
+//
+$title = isset($this->title) ? $this->title : t('Create');
 
-
-$this->createUrl = isset($this->createUrl) ? $this->createUrl : __HOME__.'/'.$this->getUrlToken(0).'/create';
-
-
-
+//
+$createUrl = isset($this->createUrl) 
+           ? $this->createUrl
+           : __HOME__.'/'.$this->getUrlToken(0).'/create';
 ?>
 <div class="navbar-wrapper">
 
@@ -17,19 +22,26 @@ $this->createUrl = isset($this->createUrl) ? $this->createUrl : __HOME__.'/'.$th
 		>
 
 		<div class="navbar-header">    
-			<span class="navbar-brand nav-bar-title"><?=@$this->title?></span>
+			<span class="navbar-brand nav-bar-title">
+                <?=$title?>
+            </span>
 		</div>
 		
 		<div class="navbar-content collapse navbar-collapse">				
-			<div class="pull-right"> 			
-				<button 
-					type="button" 
-					class="navbar-btn btn btn-default" 
-					onclick="location.href='<?=@$this->createUrl?>'" >
-					<span class="glyphicon glyphicon-plus"></span> 
-					Nuovo
-				</button>
-				<?php $this->getHook('nav-list-button') ?>
+			<div class="pull-right">
+
+				<?php $this->getHook('theme-nav-list-buttons') ?>
+
+                <?php if ($this->ability->create) { ?>
+                    <a
+                        href="<?=$createUrl?>"
+                        class="navbar-btn btn btn-default"
+                        >
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <?=t('Nuovo')?>
+                    </a>
+                <?php } ?>
+
 			</div>
 		</div>
 	</nav> 

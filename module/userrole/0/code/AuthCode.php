@@ -1,25 +1,22 @@
 <?php
 /**
+ *
  * 
  */
+
 namespace Module\Userrole\Code;
 
-/**
- * 
- */
 use Javanile\Liberty\Runtime;
 use Module\Userrole\Model\User;
 
-/**
- * 
- */
-class AuthJob 
+class AuthCode
 {		
 	/**
+     * 
 	 * 
 	 */
-	function index_action() {		
-		
+	public function indexAction()
+    {
 		//
 		$app = Runtime::getApp();
 		
@@ -28,52 +25,54 @@ class AuthJob
 	}
 	
 	/**
-	 * 
+	 *
+     *
 	 */
-	function login_action() {
-		
+	public function loginAction()
+    {
 		//
-		$app = Liberty\Runtime::getApp();
+		$app = Runtime::getApp();
 
 		//
-		$username = @$_POST["username"];
-		$password = @$_POST["password"];
-		$redirect = @$_POST["redirect"];
-		$remember = @$_POST["remember"];		
+		$username = filter_input(INPUT_POST, "username");
+		$password = filter_input(INPUT_POST, "password");
+		$redirect = filter_input(INPUT_POST, "redirect");
+		$remember = filter_input(INPUT_POST, "remember");
 				
 		//
-		if (User::canUserLogin($username, $password)) {		
-						
-			//
-			$user = User::fetchByUsername($username);	
-			
-			//
-			$app->setSessionUser(
-				$user->id,
-				$user->username,
-				array($user->role)
-			);						
-			
-			//
-			$app->redirect($redirect ? $redirect : null);						
-		} 
-		
-		//
-		else {			
-			$app->redirect('auth',array(
+		if (!User::canUserLogin($username, $password)) {
+            
+            //
+            $app->redirect('auth', [
 				'message' => 'Username non valido'				
-			));						
-		}		
+			]);            
+        }
+
+        //
+        $user = User::fetchByUsername($username);
+
+        //
+        $roles = [$user->role];
+
+        //
+        $app->setSessionUser(
+            $user->id,
+            $user->username,
+            $roles
+        );
+
+        //
+        $app->redirect($redirect ? $redirect : null);						
 	}
 	
 	/**
 	 * logout action
 	 *
 	 */
-	public function logout_action() {
-		
+	public function logoutAction()
+    {
 		//
-		$app = Liberty\Runtime::getApp();
+		$app = Runtime::getApp();
 
 		//
 		$app->delSessionUser();

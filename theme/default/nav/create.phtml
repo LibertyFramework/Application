@@ -1,3 +1,17 @@
+<?php
+/**
+ *
+ *
+ */
+
+//
+$title = isset($this->title) ? $this->title : t('Create');
+
+//
+$cancelUrl = isset($this->cancelUrl) ? $this->cancelUrl : __HOME__;
+
+?>
+
 <div class="navbar-wrapper">
 
 	<nav 
@@ -8,28 +22,33 @@
 		> 
 	
 		<div class="navbar-header">    
-			<span class="navbar-brand nav-bar-title" ><?=@$this->title?></span>
+			<span class="navbar-brand nav-bar-title" >
+                <?=$title?>
+            </span>
 		</div> 
 
 		<div class="navbar-content collapse navbar-collapse">		
 			<div class="pull-right">
-				<button 
-					type="button" 
+
+                <?=$this->getHook('theme-nav-create-buttons')?>
+
+                <button
+					class="navbar-btn btn btn-default btn-success"
+					type="button"
+					onclick="javascript:submitForm();"
+					>
+					<span class="glyphicon glyphicon-ok-sign"></span>
+					<?=t('Save')?>
+				</button>
+
+                <button
+					type="button"
 					class="navbar-btn btn btn-default" 
-					onclick="javascript:history.go(-1);" 
-					>
-					<span class="glyphicon glyphicon-remove"></span>
-					Indietro
+					data-ui-confirm="<?=t('Vuoi uscire senza salvare?')?>|<?=$cancelUrl?>"
+                    >
+					<?=t('Cancel')?>
 				</button>
-				<button 
-					class="navbar-btn btn btn-default btn-primary" 
-					type="button" 
-					onclick="javascript:submitForm();" 
-					>
-					<span class="glyphicon glyphicon-floppy-disk"></span> 
-					Salva
-				</button>
-				<?php $this->getHook('nav-create-button') ?>
+				
 			</div>
 		</div> 
 	</nav>		

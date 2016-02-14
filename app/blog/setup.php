@@ -1,16 +1,31 @@
 <?php
-// 
-define('__NAME__','blog');
-define('__MODE__','demo');
+/**
+ *
+ *
+ */
 
 //
-require_once __DIR__.'/../../class/Setup.php';
+require_once '../../vendor/autoload.php';
 
 //
-$setup = new Setup(
-	__DIR__.'/../../bootstrap.php',
-	__DIR__.'/index.php'
-);
+use Javanile\Liberty\Setup;
+
+//
+$setup = new Setup([
+
+    //
+    'name' => 'blog',
+
+    //
+    'mode' => 'demo',
+
+    //
+    'index' => './index.php',
+
+    //
+    'bootstrap' => '../../bootstrap.php',
+]);
 
 //
 $setup->run();
+

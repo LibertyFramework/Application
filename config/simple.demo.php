@@ -5,24 +5,29 @@
  */
 
 //
-return array(
+return [
+			
+	//
+	'name' => 'Simple Web App',
 	
 	//
-	'debug' => true,
+	'home' => '/app/simple',
 	
 	//
-	'name' => 'CRM',
-	
+	'db' => [
+		'prefix' => 'swa_',
+	],
+
+    //
+    'default' => [
+        'code' => 'Simple',
+    ],
+
 	//
-	'url' => '/app/crm',
-	
-	//
-	'db' => array(		
-		'prefix' => 'crm_',
-	),
-	
-	//
-	'module' => array(
+	'module' => [
 		'demodata'
-	),
-);
+	],
+
+    //
+	'debug' => true,
+];

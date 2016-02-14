@@ -1,32 +1,78 @@
 <?php
+/**
+ *
+ *
+ */
 
-//
-require_once __BASE__.'/class/app/PublicWebApp.php';
+namespace App\Simple;
 
-//
-class MainWebApp extends PublicWebApp { 
-	
-	//
-	public function onReady() {
-		
-		//
+use Javanile\Liberty\App\PublicWebApp;
+
+class SimpleWebApp extends PublicWebApp
+{ 	
+	/**
+     *
+     *
+     */
+	public function onInit()
+    {
+        //
+        $this->addItemMenu();
+
+        //
+        $this->addElementMenu();
+	}
+
+    /**
+     *
+     *
+     */
+    public function addItemMenu()
+    {
+        //
 		$this->addMenu('navbar',array(
-			
+
 			//
-			'label' => 'My Items',
-			
+			'label' => 'Item',
+
 			//
 			'children' => array(
 				array(
-					'label' => 'Create New Item',
-					'link'	=> __HOME__.'/main/create-item/'
+					'label' => 'Create new item',
+					'link'	=> $this->url('simple/create-item')
 				),
 				array(
-					'label' => 'Items Archive',
-					'link'	=> __HOME__.'/main/list-item/'
-				),				
+					'label' => 'Open items archive',
+					'link'	=> $this->url('simple/list-item')
+				),
 			),
-		));		
-	}
+		));
+    }
+
+    /**
+     *
+     *
+     */
+    public function addElementMenu()
+    {
+        //
+		$this->addMenu('navbar',array(
+
+			//
+			'label' => 'Element',
+
+			//
+			'children' => array(
+				array(
+					'label' => 'Create new element',
+					'link'	=> $this->url('simple/create-element')
+				),
+				array(
+					'label' => 'Open elements archive',
+					'link'	=> $this->url('simple/list-element')
+				),
+			),
+		));
+    }
 }
 

@@ -1,0 +1,27 @@
+<ul class="nav navbar-nav pull-right">
+	<?php if ($this->hasSessionUser()) { ?> 
+		<li class="divider-vertical"></li>						
+		<li class="dropdown">
+			<button class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown">
+				<span class="glyphicon glyphicon-off"></span>
+			</button>
+			<ul class="dropdown-menu" style="right:0;left:auto;">							
+				<li><a href=""><?=$this->_user_['name']?></a></li>
+				<li><a href="<?=__HOME__?>/auth/logout">Esci</a></li>
+			</ul>
+		</li>	
+	<?php } else { ?>	
+		<li class="dropdown">
+			<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+			<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+				<form action="<?=__URL__?>" method="POST" accept-charset="UTF-8">
+					<input id="user_username" style="margin-bottom: 15px;" type="text" name="username" size="30" />
+					<input id="user_password" style="margin-bottom: 15px;" type="password" name="password" size="30" />
+					<input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="remember" value="1" />
+					<label class="string optional" for="user_remember_me"> Remember me</label>
+					<input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+				</form>
+			</div>
+		</li>
+	<?php } ?>
+</ul>

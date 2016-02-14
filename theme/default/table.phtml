@@ -1,0 +1,105 @@
+<?php
+/**
+ *
+ *
+ */
+
+//
+$gridHandler = isset($gridHandler)
+             ? $gridHandler
+             : 'gridTable';
+
+?>
+
+<div id="<?=$gridHandler?>-wrapper">
+	<table 
+        id="<?=$gridHandler?>"
+        cellpadding="0"
+        cellspacing="0"
+        border="0"
+        class="table table-striped table-bordered"
+        >
+
+        <thead>
+			<?php foreach($table->getColumns() as $column) {?>
+				<th><?=$column->getLabel();?></th>
+			<?php } ?>			
+		</thead>	
+		<tbody>
+		</tbody>
+		<tfoot>
+		</tfoot>
+	</table>		
+</div>
+
+<script>
+	var <?=$gridHandler?> = null;
+	jQuery(document).ready(function() {
+        
+        jQuery.fn.dataTable.ext.errMode = function ( settings, helpPage, message ) {
+           jQuery('#<?=$gridHandler?>').html('<pre>'+settings.jqXHR.responseText+'</pre>');
+        };
+
+		// grid init
+		<?=$gridHandler?> = jQuery('#<?=$gridHandler?>').dataTable({
+			bFilter: true,
+			bJQueryUI: true,
+			sServerMethod: "POST",
+		    bServerSide: true,
+    		bProcessing: true,
+			iDisplayLength: 25,
+			sAjaxSource: '<?=$table->getAjax()?>',
+			aoColumns: <?=$table->getColumnsDefinition()?>,
+			aaSorting: <?=$table->getDefaultSortOrder()?>,
+			oLanguage: {
+				sEmptyTable:     "Nessun dato presente nella tabella",
+				sInfo:           "Vista da _START_ a _END_ di _TOTAL_ elementi",
+				"sInfoEmpty":      "Vista da 0 a 0 di 0 elementi",
+				"sInfoFiltered":   "(filtrati da _MAX_ elementi totali)",
+				"sInfoPostFix":    "",
+				"sInfoThousands":  ",",
+				"sLengthMenu":     "Visualizza _MENU_ elementi",
+				"sLoadingRecords": "Caricamento...",
+				"sProcessing":     "Elaborazione...",
+				"sSearch":         "Cerca:",
+				"sZeroRecords":    "La ricerca non ha portato alcun risultato.",
+				"oPaginate": {
+					"sFirst":      "Inizio",
+					"sPrevious":   "Precedente",
+					"sNext":       "Successivo",
+					"sLast":       "Fine"
+				},
+				"oAria": {
+					"sSortAscending":  ": attiva per ordinare la colonna in ordine crescente",
+					"sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+				}
+			},
+			"fnPreDrawCallback": function( oSettings ) {
+
+                $('.dataTables_filter input').addClass('form-control input-sm');
+                $('.dataTables_filter input').css('width', '200px');
+                $('.dataTables_length select').addClass('form-control input-sm');
+                $('.dataTables_length select').css('width', '75px');
+				
+			}
+		});
+		// grid sort		
+		//jQuery('#grid_filter').hide();		
+	});	
+	jQuery(window).resize(function(){
+		jQuery("#<?=$gridHandler?>").css('width', '100%');				
+	});
+	
+	jQuery(document).ready(function(){
+		jQuery("#<?=$gridHandler?>").css('width', '100%');				
+	});
+	
+	jQuery("html>head").append('<style>#gridTable tbody tr{cursor:pointer;}</style>');				
+		
+	jQuery(document).on("click","#gridTable tbody tr",function(e){
+		var po = gridTable.fnGetPosition(this); 
+		var id = gridTable.fnGetData(po)[0];		
+		<?=@$table->ClientEvents['row.click']?>
+    });
+		
+</script>

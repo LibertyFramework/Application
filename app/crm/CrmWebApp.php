@@ -3,16 +3,16 @@
  *
  */
 
-//
 namespace App\Blog;
 
-//
-use Javanile\Liberty\App\PrivateWebApp;
+use Javanile\Liberty\Apps\HierarchyWebApp;
 
-//
-class CrmWebApp extends PrivateWebApp 
+class CrmWebApp extends HierarchyWebApp
 {
-	//
+	/**
+     *
+     *
+     */
 	public function onReady()
     {
 		//

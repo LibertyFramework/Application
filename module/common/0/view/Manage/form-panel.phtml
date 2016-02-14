@@ -1,0 +1,90 @@
+<?php
+
+//
+$item = $this->item;
+
+//
+$schema = $item::getSchema();
+
+//
+$excludeFields = [
+    'owner','created_at','created_by','updated_at','updated_by',
+];
+
+//
+foreach($schema as $field => $attributes) {
+    
+    //
+    if (in_array($field, $excludeFields)) {
+        continue;
+    }
+
+    //
+    if ($attributes['Key'] == 'PRI') {
+        continue;        
+    } 
+
+    //
+    else if ($attributes['Type'] == 'date') {
+        
+        //
+        $this->drawFormCell(t($field), 4);
+
+        //
+        echo '<input'
+           . '    type="text"'
+           . '    name="'.$field.'"'
+           . '    value="'.$item->{$field}.'"'
+           . '    class="form-control"'
+           . '    class="data-ui-datepicker"'
+           . '    />';
+    }
+
+    //
+    else if (substr($attributes['Type'], 0, 4) == 'enum') {
+
+        //
+        $this->drawFormCell(t($field), 4);
+
+        //
+        echo '<select '
+           . '    name="'.$field.'"'
+           . '    class="form-control"'
+           . '    />';
+        
+        //
+        $values = $item::getFieldValues($field);
+
+        //
+        foreach ($values as $value) {
+
+            //
+            $selected = $value == $item->{$field} ? ' selected="selected"' : '';
+
+            //
+            echo '<option value="'.$value.'"'.$selected.'>'.t($value).'</option>';
+        }
+
+        //
+        echo '</select>';
+    }
+
+    //
+    else {
+        
+        //
+        $this->drawFormCell(t($field), 4);
+
+        //
+        echo '<input' 
+           . '    type="text"'
+           . '    name="'.$field.'"'
+           . '    value="'.$item->{$field}.'"'
+           . '    class="form-control"'
+           . '    />';        
+    }                
+}
+
+
+
+
